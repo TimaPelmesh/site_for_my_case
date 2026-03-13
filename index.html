@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CORAX — Network Configuration Manager</title>
+  <meta name="description" content="Централизованное управление конфигурациями сетевого оборудования с AI-анализом и Telegram-интеграцией." />
+  <meta name="author" content="Иванов Тимур, группа 3АСС9-13" />
+  <link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
+  <link rel="icon"          href="icon.ico" type="image/x-icon" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Lucide icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════ -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner nav-inner-centered">
+        <a href="#" class="nav-logo">
+          <img src="icon.ico" alt="" class="nav-logo-img" width="32" height="32" />
+          CORAX
+        </a>
+        <nav class="nav-links">
+          <a href="#features">Возможности</a>
+          <a href="#screenshots">Интерфейс</a>
+          <a href="#stack">Стек</a>
+          <a href="#security">Безопасность</a>
+          <a href="#quickstart">Установка</a>
+          <a href="#api">API</a>
+        </nav>
+        <div class="nav-right">
+          <span class="nav-version">v1.0.0</span>
+          <a href="#quickstart" class="btn btn-primary" style="padding:8px 18px;font-size:13px;">Начать</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#features"    onclick="closeMobileNav()">Возможности</a>
+    <a href="#screenshots" onclick="closeMobileNav()">Интерфейс</a>
+    <a href="#architecture" onclick="closeMobileNav()">Архитектура</a>
+    <a href="#stack"       onclick="closeMobileNav()">Стек</a>
+    <a href="#security"    onclick="closeMobileNav()">Безопасность</a>
+    <a href="#quickstart"  onclick="closeMobileNav()">Установка</a>
+    <a href="#api"         onclick="closeMobileNav()">API</a>
+    <a href="#author"      onclick="closeMobileNav()">Автор</a>
+  </div>
+
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section id="hero">
+      <div id="hero-three-wrap" class="hero-three-wrap" aria-hidden="true"></div>
+      <div class="container hero-container">
+
+        <div class="hero-inner">
+
+          <h1 class="hero-title">
+            <img src="icon.ico" alt="" class="hero-title-icon" width="52" height="52" />
+            <span class="hero-title-text">CORAX</span>
+          </h1>
+          <p class="hero-subtitle">Configuration Oracle &amp; Reactive Analysis eXpert</p>
+
+          <p class="hero-desc">
+            Централизованное управление конфигурациями сетевого оборудования.<br />
+            Compliance-проверки, AI-анализ, Telegram-уведомления и интеграция с Oxidized.
+          </p>
+
+        </div>
+
+        <!-- Main screenshot mockup -->
+        <div class="hero-mockup reveal">
+          <div class="browser-chrome">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-url">http://127.0.0.1:8010 — Dashboard</div>
+            </div>
+            <div class="browser-body">
+              <img src="assets/dashboard.png" alt="Главный дашборд CORAX" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         FEATURES
+    ══════════════════════════════════════════ -->
+    <section id="features" class="section">
+      <div class="container">
+
+        <div class="text-center reveal" style="margin-bottom:48px;">
+          <div class="eyebrow">Возможности</div>
+          <h2 class="section-title">Всё для управления сетью</h2>
+          <p class="section-desc">
+            Восемь модулей, объединённых в единый интерфейс: от сбора конфигураций до AI-анализа и Telegram-уведомлений.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <div class="feature-cell reveal">
+            <div class="feature-title">
+              <i data-lucide="layout-dashboard" class="feature-title-icon"></i>
+              Дашборд
+            </div>
+            <div class="feature-desc">Статистика устройств и бэкапов в реальном времени, последние оповещения и графики активности через WebSocket.</div>
+          </div>
+
+          <div class="feature-cell reveal d1">
+            <div class="feature-title">
+              <i data-lucide="file-code-2" class="feature-title-icon"></i>
+              Конфигурации
+            </div>
+            <div class="feature-desc">Просмотр, резервное копирование и поиск конфигураций. Diff-viewer с подсветкой различий между версиями.</div>
+          </div>
+
+          <div class="feature-cell reveal d2">
+            <div class="feature-title">
+              <i data-lucide="shield-check" class="feature-title-icon"></i>
+              Compliance
+            </div>
+            <div class="feature-desc">Автоматические проверки безопасности по правилам для каждого типа устройства. Отчёты и рекомендации по исправлению.</div>
+          </div>
+
+          <div class="feature-cell reveal d3">
+            <div class="feature-title">
+              <i data-lucide="brain" class="feature-title-icon"></i>
+              AI Анализ
+            </div>
+            <div class="feature-desc">Интеграция с LM Studio (локальный AI). Анализ безопасности и оптимизации конфигураций, экспорт в PDF. Кэш 24 часа.</div>
+          </div>
+
+          <div class="feature-cell reveal">
+            <div class="feature-title">
+              <i data-lucide="bookmark" class="feature-title-icon"></i>
+              Золотые стандарты
+            </div>
+            <div class="feature-desc">Создание эталонных шаблонов конфигураций с привязкой к типу устройства. Проверка соответствия одним кликом.</div>
+          </div>
+
+          <div class="feature-cell reveal d1">
+            <div class="feature-title">
+              <i data-lucide="send" class="feature-title-icon"></i>
+              Telegram
+            </div>
+            <div class="feature-desc">Уведомления о критических событиях и изменениях. Mini App внутри Telegram с автоматической авторизацией.</div>
+          </div>
+
+          <div class="feature-cell reveal d2">
+            <div class="feature-title">
+              <i data-lucide="calendar-check" class="feature-title-icon"></i>
+              Планировщик
+            </div>
+            <div class="feature-desc">Задачи с приоритетами и отслеживанием статусов. Гибкая фильтрация, сортировка и управление из веб-интерфейса.</div>
+          </div>
+
+          <div class="feature-cell reveal d3">
+            <div class="feature-title">
+              <i data-lucide="refresh-cw" class="feature-title-icon"></i>
+              Oxidized
+            </div>
+            <div class="feature-desc">Интеграция по REST API. Автоматический ежедневный сбор конфигураций с сетевых устройств через SSH/Telnet.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         SCREENSHOTS
+    ══════════════════════════════════════════ -->
+    <section id="screenshots" class="section section-alt">
+      <div class="container">
+
+        <div class="text-center reveal" style="margin-bottom:48px;">
+          <div class="eyebrow">Интерфейс</div>
+          <h2 class="section-title">Скриншоты системы</h2>
+          <p class="section-desc">
+            Современный веб-интерфейс для управления сетевым оборудованием.
+            Замените заглушки на реальные скриншоты проекта.
+          </p>
+        </div>
+
+        <!-- Wide screenshot -->
+        <div class="screenshots-main reveal" style="margin-bottom:20px;">
+          <div class="screenshot-card" style="border-radius:var(--r-xl);">
+            <img src="assets/config_device.png" alt="Просмотр конфигурации устройства" />
+            <div class="screenshot-label">Модуль конфигураций — просмотр и diff</div>
+          </div>
+        </div>
+
+        <!-- Grid of 3 smaller screenshots -->
+        <div class="screenshots-grid">
+
+          <div class="screenshot-card reveal">
+            <div class="img-placeholder">
+              <i data-lucide="shield-check"></i>
+              <div class="placeholder-label">Compliance проверки</div>
+              <div class="placeholder-hint">assets/screenshot-compliance.png</div>
+            </div>
+            <!-- <img src="assets/screenshot-compliance.png" alt="Compliance" /> -->
+            <div class="screenshot-label">Compliance — отчёт по устройствам</div>
+          </div>
+
+          <div class="screenshot-card reveal d1">
+            <div class="img-placeholder">
+              <i data-lucide="brain"></i>
+              <div class="placeholder-label">AI Анализ</div>
+              <div class="placeholder-hint">assets/screenshot-ai.png</div>
+            </div>
+            <!-- <img src="assets/screenshot-ai.png" alt="AI Анализ" /> -->
+            <div class="screenshot-label">AI анализ — рекомендации LM Studio</div>
+          </div>
+
+          <div class="screenshot-card reveal d2">
+            <div class="img-placeholder">
+              <i data-lucide="bell"></i>
+              <div class="placeholder-label">Оповещения</div>
+              <div class="placeholder-hint">assets/screenshot-alerts.png</div>
+            </div>
+            <!-- <img src="assets/screenshot-alerts.png" alt="Оповещения" /> -->
+            <div class="screenshot-label">Оповещения об изменениях конфигураций</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         ARCHITECTURE
+    ══════════════════════════════════════════ -->
+    <section id="architecture" class="section">
+      <div class="container">
+        <div class="arch-grid">
+
+          <!-- Diagram -->
+          <div class="reveal">
+            <div class="eyebrow" style="margin-bottom:12px;">Архитектура</div>
+            <h2 class="section-title">Схема компонентов</h2>
+            <p class="section-desc" style="margin-bottom:36px;">Поток данных от сетевых устройств до веб-интерфейса и Telegram.</p>
+
+            <div class="arch-diagram">
+              <div class="arch-row">
+                <div class="arch-node client"><i data-lucide="monitor"></i>Браузер</div>
+                <div class="arch-node client"><i data-lucide="send"></i>Telegram</div>
+              </div>
+              <div class="arch-divider">↓</div>
+              <div class="arch-row">
+                <div class="arch-node core" style="padding:12px 24px;gap:10px;">
+                  <i data-lucide="zap"></i>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;">CORAX · FastAPI</div>
+                    <div style="font-size:11px;opacity:0.8;font-weight:400;margin-top:1px;">Auth · DB · AI · Alerts · Compliance</div>
+                  </div>
+                </div>
+              </div>
+              <div class="arch-divider">↓</div>
+              <div class="arch-row">
+                <div class="arch-node ext"><i data-lucide="refresh-cw"></i>Oxidized</div>
+                <div class="arch-node ext"><i data-lucide="brain"></i>LM Studio</div>
+                <div class="arch-node ext"><i data-lucide="database"></i>SQLite/PG</div>
+              </div>
+              <div class="arch-divider">↓</div>
+              <div class="arch-row">
+                <div class="arch-node device"><i data-lucide="server"></i>Сетевые устройства</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Steps -->
+          <div class="reveal d1">
+            <div class="eyebrow" style="margin-bottom:12px;">Поток данных</div>
+            <h2 class="section-title">Как всё работает</h2>
+            <p class="section-desc" style="margin-bottom:32px;">Пять этапов — от сбора конфигураций до оповещений.</p>
+
+            <div>
+              <div class="arch-step">
+                <div class="arch-step-num">1</div>
+                <div class="arch-step-body"><strong>Сбор</strong> — Oxidized по расписанию подключается к устройствам и сохраняет конфиги.</div>
+              </div>
+              <div class="arch-step">
+                <div class="arch-step-num">2</div>
+                <div class="arch-step-body"><strong>Синхронизация</strong> — CORAX получает список узлов и конфиги через Oxidized REST API.</div>
+              </div>
+              <div class="arch-step">
+                <div class="arch-step-num">3</div>
+                <div class="arch-step-body"><strong>Compliance</strong> — сравнение конфига с эталонным шаблоном, формирование отчёта.</div>
+              </div>
+              <div class="arch-step">
+                <div class="arch-step-num">4</div>
+                <div class="arch-step-body"><strong>AI-анализ</strong> — конфиг отправляется в LM Studio, возвращаются рекомендации безопасности.</div>
+              </div>
+              <div class="arch-step">
+                <div class="arch-step-num">5</div>
+                <div class="arch-step-body"><strong>Оповещения</strong> — при изменениях формируются алерты и Telegram-уведомления.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         TECH STACK
+    ══════════════════════════════════════════ -->
+    <section id="stack" class="section section-alt">
+      <div class="container">
+
+        <div class="text-center reveal" style="margin-bottom:48px;">
+          <div class="eyebrow">Технологии</div>
+          <h2 class="section-title">Стек разработки</h2>
+          <p class="section-desc">Современные и проверенные инструменты для надёжного production-приложения.</p>
+        </div>
+
+        <div class="stack-cols">
+
+          <!-- Backend -->
+          <div class="stack-col reveal">
+            <div class="stack-col-head">
+              <div class="stack-col-icon"><i data-lucide="server"></i></div>
+              <div class="stack-col-title">Backend</div>
+            </div>
+            <div class="stack-col-body">
+              <div class="tech-row"><span class="tech-name">FastAPI</span><span class="tech-role">Async Web Framework</span><span class="tech-dot indigo"></span></div>
+              <div class="tech-row"><span class="tech-name">SQLAlchemy</span><span class="tech-role">ORM</span><span class="tech-dot indigo"></span></div>
+              <div class="tech-row"><span class="tech-name">Pydantic v2</span><span class="tech-role">Валидация данных</span><span class="tech-dot sky"></span></div>
+              <div class="tech-row"><span class="tech-name">Uvicorn</span><span class="tech-role">ASGI сервер</span><span class="tech-dot sky"></span></div>
+              <div class="tech-row"><span class="tech-name">httpx</span><span class="tech-role">Async HTTP Client</span><span class="tech-dot green"></span></div>
+              <div class="tech-row"><span class="tech-name">python-telegram-bot</span><span class="tech-role">Telegram интеграция</span><span class="tech-dot green"></span></div>
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div class="stack-col reveal d1">
+            <div class="stack-col-head">
+              <div class="stack-col-icon"><i data-lucide="monitor"></i></div>
+              <div class="stack-col-title">Frontend</div>
+            </div>
+            <div class="stack-col-body">
+              <div class="tech-row"><span class="tech-name">Vanilla JavaScript</span><span class="tech-role">Основная логика</span><span class="tech-dot indigo"></span></div>
+              <div class="tech-row"><span class="tech-name">CSS3</span><span class="tech-role">Custom Properties, Grid</span><span class="tech-dot indigo"></span></div>
+              <div class="tech-row"><span class="tech-name">HTML5</span><span class="tech-role">Семантическая разметка</span><span class="tech-dot sky"></span></div>
+              <div class="tech-row"><span class="tech-name">Google Fonts</span><span class="tech-role">Inter / Montserrat</span><span class="tech-dot sky"></span></div>
+              <div class="tech-row"><span class="tech-name">WebSocket</span><span class="tech-role">Логи реального времени</span><span class="tech-dot green"></span></div>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="stack-col reveal d2">
+            <div class="stack-col-head">
+              <div class="stack-col-icon"><i data-lucide="shield"></i></div>
+              <div class="stack-col-title">Безопасность</div>
+            </div>
+            <div class="stack-col-body">
+              <div class="tech-row"><span class="tech-name">bcrypt</span><span class="tech-role">Хеширование паролей r=12</span><span class="tech-dot indigo"></span></div>
+              <div class="tech-row"><span class="tech-name">python-jose</span><span class="tech-role">JWT HS256</span><span class="tech-dot indigo"></span></div>
+              <div class="tech-row"><span class="tech-name">slowapi</span><span class="tech-role">Rate Limiting</span><span class="tech-dot sky"></span></div>
+              <div class="tech-row"><span class="tech-name">CSRF Double Submit</span><span class="tech-role">CSRF защита</span><span class="tech-dot sky"></span></div>
+              <div class="tech-row"><span class="tech-name">SQLite / PostgreSQL</span><span class="tech-role">База данных</span><span class="tech-dot green"></span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         SECURITY
+    ══════════════════════════════════════════ -->
+    <section id="security" class="section">
+      <div class="container">
+        <div class="security-layout">
+
+          <!-- Left: checklists -->
+          <div>
+            <div class="eyebrow reveal">Безопасность</div>
+            <h2 class="section-title reveal">Production-ready защита</h2>
+            <p class="section-desc reveal" style="margin-bottom:40px;">
+              Многоуровневая система защиты: аутентификация, защита от атак, валидация и аудит всех действий.
+            </p>
+
+            <div class="sec-group reveal">
+              <div class="sec-group-title">Аутентификация</div>
+              <div class="sec-list">
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>bcrypt хеширование паролей (rounds=12)</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>JWT токены с настраиваемым TTL</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>httpOnly cookies — защита от XSS</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>SameSite=Strict + Secure в production</div>
+              </div>
+            </div>
+
+            <div class="sec-group reveal d1">
+              <div class="sec-group-title">Защита от атак</div>
+              <div class="sec-list">
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>CSRF токены (Double Submit Cookie)</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Rate Limiting: 5 попыток входа / минуту на IP</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Блокировка аккаунта после 5 неудачных попыток на 30 мин</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Блокировка IP после 50 попыток на 60 минут</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Timing attack protection (константная задержка)</div>
+              </div>
+            </div>
+
+            <div class="sec-group reveal d2">
+              <div class="sec-group-title">HTTP заголовки и валидация</div>
+              <div class="sec-list">
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Content-Security-Policy (CSP)</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>X-Frame-Options: DENY (защита от clickjacking)</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Strict-Transport-Security (HSTS) в production</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Pydantic v2 — строгая валидация входных данных</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>SQLAlchemy ORM — защита от SQL-инъекций</div>
+                <div class="sec-item"><span class="sec-check"><i data-lucide="check"></i></span>Полный аудит-лог в security.log</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: score + pills -->
+          <div class="sec-right">
+
+            <div class="sec-score reveal">
+              <div class="sec-score-eyebrow">Оценка безопасности</div>
+              <div class="sec-score-value">A+</div>
+              <div class="sec-score-sub">Production-grade security</div>
+            </div>
+
+            <div class="sec-pills reveal d1">
+              <span class="sec-pill green"><i data-lucide="lock"></i>bcrypt r=12</span>
+              <span class="sec-pill indigo"><i data-lucide="key"></i>JWT HS256</span>
+              <span class="sec-pill sky"><i data-lucide="shield-check"></i>CSRF</span>
+              <span class="sec-pill amber"><i data-lucide="zap"></i>Rate Limit</span>
+              <span class="sec-pill green"><i data-lucide="ban"></i>IP Block</span>
+              <span class="sec-pill indigo"><i data-lucide="scroll-text"></i>Audit Log</span>
+              <span class="sec-pill sky"><i data-lucide="eye-off"></i>XSS Guard</span>
+              <span class="sec-pill amber"><i data-lucide="check-check"></i>Pydantic v2</span>
+            </div>
+
+            <div class="sec-passwords reveal d2">
+              <div class="sec-passwords-title">Требования к паролям</div>
+              <ul>
+                <li>От 8 до 72 символов</li>
+                <li>Минимум 1 заглавная буква</li>
+                <li>Минимум 1 строчная буква</li>
+                <li>Минимум 1 цифра</li>
+                <li>Минимум 1 специальный символ</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         QUICK START
+    ══════════════════════════════════════════ -->
+    <section id="quickstart" class="section section-alt">
+      <div class="container">
+
+        <div class="text-center reveal" style="margin-bottom:48px;">
+          <div class="eyebrow">Установка</div>
+          <h2 class="section-title">Быстрый старт</h2>
+          <p class="section-desc">Четыре шага до работающего CORAX в вашей сети.</p>
+        </div>
+
+        <div class="qs-layout reveal">
+
+          <!-- Steps list -->
+          <div class="qs-nav">
+            <button class="qs-btn active" onclick="showQsTab(0, this)">
+              <span class="qs-btn-num">1</span>
+              <div>
+                <div class="qs-btn-title">Клонирование</div>
+                <div class="qs-btn-sub">Получить код</div>
+              </div>
+            </button>
+            <button class="qs-btn" onclick="showQsTab(1, this)">
+              <span class="qs-btn-num">2</span>
+              <div>
+                <div class="qs-btn-title">Зависимости</div>
+                <div class="qs-btn-sub">Python venv + pip</div>
+              </div>
+            </button>
+            <button class="qs-btn" onclick="showQsTab(2, this)">
+              <span class="qs-btn-num">3</span>
+              <div>
+                <div class="qs-btn-title">Конфигурация</div>
+                <div class="qs-btn-sub">Настроить .env</div>
+              </div>
+            </button>
+            <button class="qs-btn" onclick="showQsTab(3, this)">
+              <span class="qs-btn-num">4</span>
+              <div>
+                <div class="qs-btn-title">Запуск</div>
+                <div class="qs-btn-sub">Admin + uvicorn</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Code panels -->
+          <div class="code-panel">
+
+            <div class="code-block active" id="cb0">
+              <div class="code-header">
+                <span class="code-filename">bash</span>
+                <button class="copy-btn" onclick="copyCode('cp0')">
+                  <i data-lucide="copy"></i><span>Копировать</span>
+                </button>
+              </div>
+              <pre id="cp0"><span class="cm"># Клонировать репозиторий</span>
+<span class="kw">git</span> clone https://github.com/your-username/corax.git
+<span class="kw">cd</span> corax
+
+<span class="cm"># Проверить версию Python (3.11+)</span>
+<span class="kw">python</span> --version</pre>
+            </div>
+
+            <div class="code-block" id="cb1">
+              <div class="code-header">
+                <span class="code-filename">bash</span>
+                <button class="copy-btn" onclick="copyCode('cp1')">
+                  <i data-lucide="copy"></i><span>Копировать</span>
+                </button>
+              </div>
+              <pre id="cp1"><span class="cm"># Windows</span>
+<span class="kw">python</span> -m venv venv
+<span class="var">venv\Scripts\activate</span>
+
+<span class="cm"># Linux / macOS</span>
+<span class="kw">python3</span> -m venv venv
+<span class="kw">source</span> venv/bin/activate
+
+<span class="cm"># Установить зависимости</span>
+<span class="kw">pip</span> install -r requirements.txt</pre>
+            </div>
+
+            <div class="code-block" id="cb2">
+              <div class="code-header">
+                <span class="code-filename">.env</span>
+                <button class="copy-btn" onclick="copyCode('cp2')">
+                  <i data-lucide="copy"></i><span>Копировать</span>
+                </button>
+              </div>
+              <pre id="cp2"><span class="cm"># Обязательные</span>
+<span class="var">JWT_SECRET_KEY</span><span class="op">=</span><span class="str">ваш-ключ-минимум-32-символа</span>
+<span class="var">ENVIRONMENT</span><span class="op">=</span><span class="str">development</span>
+<span class="var">CORS_ORIGINS</span><span class="op">=</span><span class="str">http://localhost:8010</span>
+
+<span class="cm"># Telegram (опционально)</span>
+<span class="var">TELEGRAM_BOT_TOKEN</span><span class="op">=</span><span class="str">your-bot-token</span>
+<span class="var">NCM_WEBAPP_URL</span><span class="op">=</span><span class="str">https://your-domain.com</span>
+
+<span class="cm"># AI / LM Studio (опционально)</span>
+<span class="var">LMSTUDIO_ENABLED</span><span class="op">=</span><span class="num">1</span>
+<span class="var">LMSTUDIO_BASE_URL</span><span class="op">=</span><span class="str">http://127.0.0.1:1234/v1</span>
+<span class="var">LMSTUDIO_MODEL</span><span class="op">=</span><span class="str">vikhr-llama3.1-8b-instruct</span>
+
+<span class="cm"># Oxidized (опционально)</span>
+<span class="var">OXIDIZED_ENABLED</span><span class="op">=</span><span class="num">1</span>
+<span class="var">OXIDIZED_BASE_URL</span><span class="op">=</span><span class="str">http://127.0.0.1:8888</span></pre>
+            </div>
+
+            <div class="code-block" id="cb3">
+              <div class="code-header">
+                <span class="code-filename">bash</span>
+                <button class="copy-btn" onclick="copyCode('cp3')">
+                  <i data-lucide="copy"></i><span>Копировать</span>
+                </button>
+              </div>
+              <pre id="cp3"><span class="cm"># Создать администратора</span>
+<span class="kw">python</span> scripts/create_admin.py
+
+<span class="cm"># Режим разработки</span>
+<span class="kw">python</span> -m uvicorn backend.main:app \
+  --host 127.0.0.1 --port <span class="num">8010</span> --reload
+
+<span class="cm"># Production (4 воркера)</span>
+<span class="kw">python</span> -m uvicorn backend.main:app \
+  --host 0.0.0.0 --port <span class="num">8010</span> --workers <span class="num">4</span>
+
+<span class="cm"># Открыть браузер → http://127.0.0.1:8010
+# Документация → http://127.0.0.1:8010/docs</span></pre>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Terminal (optional live demo visual) -->
+        <div class="reveal" style="margin-top:32px;max-width:680px;margin-left:auto;margin-right:auto;">
+          <div class="terminal-window">
+            <div class="terminal-bar">
+              <span class="t-dot r"></span>
+              <span class="t-dot a"></span>
+              <span class="t-dot g"></span>
+              <span class="t-title">corax — bash</span>
+            </div>
+            <div class="terminal-body" id="termBody"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         API REFERENCE
+    ══════════════════════════════════════════ -->
+    <section id="api" class="section">
+      <div class="container">
+
+        <div class="text-center reveal" style="margin-bottom:48px;">
+          <div class="eyebrow">API</div>
+          <h2 class="section-title">Основные эндпоинты</h2>
+          <p class="section-desc">
+            Интерактивная документация: <code style="font-family:'JetBrains Mono',monospace;color:var(--indigo-500);">/docs</code> (Swagger UI)
+            и <code style="font-family:'JetBrains Mono',monospace;color:var(--indigo-500);">/redoc</code> (ReDoc).
+          </p>
+        </div>
+
+        <div class="table-wrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Метод</th>
+                <th>Путь</th>
+                <th>Описание</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="method POST">POST</span></td><td class="ep-path">/api/auth/login</td><td>Авторизация, получение JWT в httpOnly cookie</td></tr>
+              <tr><td><span class="method POST">POST</span></td><td class="ep-path">/api/auth/logout</td><td>Выход, инвалидация токена</td></tr>
+              <tr><td><span class="method GET">GET</span></td><td class="ep-path">/api/auth/me</td><td>Данные текущего пользователя</td></tr>
+              <tr><td><span class="method GET">GET</span></td><td class="ep-path">/api/dashboard/stats</td><td>Статистика для дашборда</td></tr>
+              <tr><td><span class="method GET">GET</span></td><td class="ep-path">/api/configs</td><td>Список конфигураций</td></tr>
+              <tr><td><span class="method GET">GET</span></td><td class="ep-path">/api/configs/{id}</td><td>Детали конфигурации</td></tr>
+              <tr><td><span class="method POST">POST</span></td><td class="ep-path">/api/configs/{id}/backup</td><td>Создать резервную копию</td></tr>
+              <tr><td><span class="method GET">GET</span></td><td class="ep-path">/api/alerts</td><td>Список оповещений</td></tr>
+              <tr><td><span class="method GET">GET</span></td><td class="ep-path">/api/tasks</td><td>Задачи планировщика</td></tr>
+              <tr><td><span class="method POST">POST</span></td><td class="ep-path">/api/tasks</td><td>Создать задачу</td></tr>
+              <tr><td><span class="method POST">POST</span></td><td class="ep-path">/api/ai/analyze</td><td>AI-анализ конфигурации (LM Studio)</td></tr>
+              <tr><td><span class="method WS">WS</span></td><td class="ep-path">/ws/logs</td><td>WebSocket — логи в реальном времени</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         AUTHOR
+    ══════════════════════════════════════════ -->
+    <section id="author" class="section section-alt">
+      <div class="container">
+        <div class="author-simple reveal">
+          Иванов Тимур <span class="author-sep">|</span> 3АСС9-13
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span class="footer-logo">CORAX</span>
+          <span class="footer-copy">© 2026 Иванов Тимур</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#features">Возможности</a>
+          <a href="#security">Безопасность</a>
+          <a href="#quickstart">Установка</a>
+          <a href="#api">API</a>
+          <a href="#author">Автор</a>
+        </div>
+
+        <div class="footer-tech">FastAPI · Vanilla JS · MIT</div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
