@@ -207,7 +207,22 @@ nav .container,
 }
 .nav-links a:hover { color: var(--gray-900); background: var(--gray-100); }
 
-.nav-right { display: flex; align-items: center; gap: 10px; justify-self: end; }
+.nav-right { display: flex; align-items: center; gap: 12px; justify-self: end; }
+.nav-github-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-700);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--gray-200);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.nav-github-link:hover {
+  color: var(--indigo-600);
+  border-color: var(--indigo-200);
+  background: var(--indigo-50);
+}
 .nav-version {
   font-size: 12px; font-weight: 600; color: var(--gray-400);
   font-family: 'JetBrains Mono', monospace;
@@ -329,7 +344,28 @@ nav .container,
 }
 .hero-desc {
   font-size: 17px; line-height: 1.75; color: var(--gray-500);
+  margin-bottom: 24px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--gray-800);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
   margin-bottom: 36px;
+}
+.hero-cta:hover {
+  background: var(--gray-900);
+  transform: translateY(-1px);
+}
+.hero-cta-github:hover {
+  background: var(--indigo-600);
 }
 .hero-container { position: relative; z-index: 1; }
 .hero-three-wrap {
