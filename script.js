@@ -10,21 +10,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initTerminal();
   initQsTabs();
   initHeroThree();
+  initScreenshotsCarousel();
 });
 
-/* ── Nav scroll ──────────────────────────────────────────── */
+/* ── Nav & mobile menu ────────────────────────────────────── */
 function initNav() {
-  // nav is always visible — no extra state needed (already styled in CSS)
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
-  if (hamburger && mobileNav) {
-    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-  }
-}
+  if (!hamburger || !mobileNav) return;
 
-window.closeMobileNav = function () {
-  document.getElementById('mobileNav')?.classList.remove('open');
-};
+  function setOpen(open) {
+    mobileNav.classList.toggle('open', open);
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    mobileNav.setAttribute('aria-hidden', !open);
+    document.body.classList.toggle('mobile-nav-open', open);
+  }
+
+  hamburger.addEventListener('click', () => setOpen(!mobileNav.classList.contains('open')));
+  window.closeMobileNav = function () { setOpen(false); };
+
+  // Закрытие по клику вне меню или по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) setOpen(false);
+  });
+  mobileNav.addEventListener('click', (e) => {
+    if (e.target === mobileNav) setOpen(false);
+  });
+}
 
 /* ── Scroll reveal ───────────────────────────────────────── */
 function initReveal() {
@@ -217,4 +230,30 @@ function initHeroThree() {
   resize();
   window.addEventListener('resize', resize);
   animate();
+}
+
+/* ── Карусель скриншотов (листание по очереди) ───────────────── */
+function initScreenshotsCarousel() {
+  const track = document.querySelector('.screenshots-carousel-track');
+  const slides = document.querySelectorAll('.screenshot-slide');
+  const dots = document.querySelectorAll('.screenshots-dot');
+  const btnPrev = document.querySelector('.screenshots-carousel-btn--prev');
+  const btnNext = document.querySelector('.screenshots-carousel-btn--next');
+  if (!track || !slides.length) return;
+
+  let index = 0;
+  const total = slides.length;
+
+  function goTo(i) {
+    index = (i + total) % total;
+    slides.forEach((s, k) => s.classList.toggle('active', k === index));
+    dots.forEach((d, k) => {
+      d.classList.toggle('active', k === index);
+      d.setAttribute('aria-selected', k === index);
+    });
+  }
+
+  if (btnPrev) btnPrev.addEventListener('click', () => goTo(index - 1));
+  if (btnNext) btnNext.addEventListener('click', () => goTo(index + 1));
+  dots.forEach((d, k) => d.addEventListener('click', () => goTo(k)));
 }

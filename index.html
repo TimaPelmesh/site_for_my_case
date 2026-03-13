@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>CORAX — Network Configuration Manager</title>
   <meta name="description" content="Централизованное управление конфигурациями сетевого оборудования с AI-анализом и Telegram-интеграцией." />
   <meta name="author" content="Иванов Тимур, группа 3АСС9-13" />
@@ -44,7 +44,6 @@
         </nav>
         <div class="nav-right">
           <span class="nav-version">v1.0.0</span>
-          <a href="#quickstart" class="btn btn-primary" style="padding:8px 18px;font-size:13px;">Начать</a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Меню">
           <span></span><span></span><span></span>
@@ -54,15 +53,17 @@
   </nav>
 
   <!-- Mobile nav -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#features"    onclick="closeMobileNav()">Возможности</a>
-    <a href="#screenshots" onclick="closeMobileNav()">Интерфейс</a>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="#features"     onclick="closeMobileNav()">Возможности</a>
+    <a href="#screenshots"  onclick="closeMobileNav()">Интерфейс</a>
     <a href="#architecture" onclick="closeMobileNav()">Архитектура</a>
-    <a href="#stack"       onclick="closeMobileNav()">Стек</a>
-    <a href="#security"    onclick="closeMobileNav()">Безопасность</a>
-    <a href="#quickstart"  onclick="closeMobileNav()">Установка</a>
-    <a href="#api"         onclick="closeMobileNav()">API</a>
-    <a href="#author"      onclick="closeMobileNav()">Автор</a>
+    <a href="#stack"        onclick="closeMobileNav()">Стек</a>
+    <a href="#security"     onclick="closeMobileNav()">Безопасность</a>
+    <a href="#quickstart"   onclick="closeMobileNav()">Установка</a>
+    <a href="#api"          onclick="closeMobileNav()">API</a>
+    <div class="mobile-nav-extra">
+      <span class="nav-version">v1.0.0</span>
+    </div>
   </div>
 
 
@@ -209,47 +210,39 @@
           </p>
         </div>
 
-        <!-- Wide screenshot -->
-        <div class="screenshots-main reveal" style="margin-bottom:20px;">
-          <div class="screenshot-card" style="border-radius:var(--r-xl);">
-            <img src="assets/config_device.png" alt="Просмотр конфигурации устройства" />
-            <div class="screenshot-label">Модуль конфигураций — просмотр и diff</div>
-          </div>
-        </div>
-
-        <!-- Grid of 3 smaller screenshots -->
-        <div class="screenshots-grid">
-
-          <div class="screenshot-card reveal">
-            <div class="img-placeholder">
-              <i data-lucide="shield-check"></i>
-              <div class="placeholder-label">Compliance проверки</div>
-              <div class="placeholder-hint">assets/screenshot-compliance.png</div>
+        <!-- Карусель скриншотов (одного размера, листание по очереди) -->
+        <div class="screenshots-carousel reveal">
+          <div class="screenshots-carousel-track">
+            <div class="screenshot-slide active">
+              <div class="screenshot-card screenshot-card--large">
+                <img src="assets/config_device.png" alt="Модуль конфигураций — просмотр и diff" />
+                <div class="screenshot-label">Модуль конфигураций — просмотр и diff</div>
+              </div>
             </div>
-            <!-- <img src="assets/screenshot-compliance.png" alt="Compliance" /> -->
-            <div class="screenshot-label">Compliance — отчёт по устройствам</div>
-          </div>
-
-          <div class="screenshot-card reveal d1">
-            <div class="img-placeholder">
-              <i data-lucide="brain"></i>
-              <div class="placeholder-label">AI Анализ</div>
-              <div class="placeholder-hint">assets/screenshot-ai.png</div>
+            <div class="screenshot-slide">
+              <div class="screenshot-card screenshot-card--large">
+                <img src="assets/complience.png" alt="Compliance — отчёт по устройствам" />
+                <div class="screenshot-label">Compliance — отчёт по устройствам</div>
+              </div>
             </div>
-            <!-- <img src="assets/screenshot-ai.png" alt="AI Анализ" /> -->
-            <div class="screenshot-label">AI анализ — рекомендации LM Studio</div>
-          </div>
-
-          <div class="screenshot-card reveal d2">
-            <div class="img-placeholder">
-              <i data-lucide="bell"></i>
-              <div class="placeholder-label">Оповещения</div>
-              <div class="placeholder-hint">assets/screenshot-alerts.png</div>
+            <div class="screenshot-slide">
+              <div class="screenshot-card screenshot-card--large">
+                <img src="assets/AI_analize.png" alt="AI анализ — рекомендации LM Studio" />
+                <div class="screenshot-label">AI анализ — рекомендации LM Studio</div>
+              </div>
             </div>
-            <!-- <img src="assets/screenshot-alerts.png" alt="Оповещения" /> -->
-            <div class="screenshot-label">Оповещения об изменениях конфигураций</div>
           </div>
-
+          <button type="button" class="screenshots-carousel-btn screenshots-carousel-btn--prev" aria-label="Предыдущий скриншот">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="screenshots-carousel-btn screenshots-carousel-btn--next" aria-label="Следующий скриншот">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="screenshots-carousel-dots" role="tablist" aria-label="Выбор скриншота">
+            <button type="button" class="screenshots-dot active" data-index="0" aria-label="Модуль конфигураций" aria-selected="true"></button>
+            <button type="button" class="screenshots-dot" data-index="1" aria-label="Compliance"></button>
+            <button type="button" class="screenshots-dot" data-index="2" aria-label="AI анализ"></button>
+          </div>
         </div>
 
       </div>
@@ -680,42 +673,36 @@
     </section>
 
 
-    <!-- ══════════════════════════════════════════
-         AUTHOR
-    ══════════════════════════════════════════ -->
-    <section id="author" class="section section-alt">
-      <div class="container">
-        <div class="author-simple reveal">
-          Иванов Тимур <span class="author-sep">|</span> 3АСС9-13
-        </div>
-      </div>
-    </section>
-
   </main>
 
 
   <!-- ══════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════ -->
-  <footer>
+  <footer class="site-footer">
+    <div class="footer-bg" aria-hidden="true"></div>
     <div class="container">
       <div class="footer-inner">
-
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          <span class="footer-logo">CORAX</span>
-          <span class="footer-copy">© 2026 Иванов Тимур</span>
+        <div class="footer-brand">
+          <img src="icon.ico" alt="" class="footer-logo-img" width="28" height="28" />
+          <div class="footer-brand-text">
+            <span class="footer-logo">CORAX</span>
+            <span class="footer-copy">© 2026 Иванов Тимур</span>
+          </div>
         </div>
-
-        <div class="footer-links">
+        <nav class="footer-links" aria-label="Подвал">
           <a href="#features">Возможности</a>
           <a href="#security">Безопасность</a>
           <a href="#quickstart">Установка</a>
           <a href="#api">API</a>
-          <a href="#author">Автор</a>
+        </nav>
+        <div class="footer-tech">
+          <span>FastAPI</span>
+          <span class="footer-tech-dot">·</span>
+          <span>Vanilla JS</span>
+          <span class="footer-tech-dot">·</span>
+          <span>MIT</span>
         </div>
-
-        <div class="footer-tech">FastAPI · Vanilla JS · MIT</div>
-
       </div>
     </div>
   </footer>
